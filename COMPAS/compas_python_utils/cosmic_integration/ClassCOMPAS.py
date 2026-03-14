@@ -4,7 +4,8 @@ import h5py as h5
 import os
 import sys
 # Get the COMPAS_ROOT_DIR var, and add the cosmic_integration directory to the path
-compas_root_dir = os.getenv('COMPAS_ROOT_DIR')
+# compas_root_dir = os.getenv('COMPAS_ROOT_DIR')
+compas_root_dir = '/scratch16/berti/tides_compas_veome/COMPAS/'
 sys.path.append(os.path.join(compas_root_dir, 'compas_python_utils/cosmic_integration'))
 import totalMassEvolvedPerZ as MPZ
 
