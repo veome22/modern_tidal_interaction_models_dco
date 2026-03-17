@@ -326,15 +326,17 @@ for net_name, snr in snr_results.items():
     ax.grid(axis='y', alpha=0.4)
     
     # remove legend, add colorbar instead
-    sm = cm.ScalarMappable(cmap='plasma', norm=plt.Normalize(vmin=0, vmax=n_snrbins))
+    bounds = np.arange(0, n_snrbins + 1)
+    norm   = matplotlib.colors.BoundaryNorm(bounds, cmap.N)
+    sm     = cm.ScalarMappable(cmap=cmap, norm=norm)
     sm.set_array([])
-    cbar = plt.colorbar(sm, ax=ax, pad=0.02)
+    cbar   = plt.colorbar(sm, ax=ax, pad=0.02, ticks=bounds[::2] + 0.5)
     cbar.set_label(r'SNR$_{\rm ' + net_name + r'}$', fontsize=20)
 
     # tick at centre of each bin, label every other one
     cbar.set_ticks(np.arange(0.5, n_snrbins, 1))
     cbar.set_ticklabels(
-        [snr_labels[i] if i % 2 == 0 else '' for i in range(n_snrbins)],
+        [snr_labels[i] for i in range(n_snrbins)],
         fontsize=14
     )
     # legend with every other bin labeled to avoid crowding
