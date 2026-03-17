@@ -322,14 +322,26 @@ for net_name, snr in snr_results.items():
     ax.set_ylabel(r'P$(\chi_{\rm eff})$', fontsize=20)
     ax.set_xlim(-0.05, 1.05)
     ax.set_ylim(bottom=0)
-    ax.tick_params(labelsize=20)
+    ax.tick_params(labelsize=14)
     ax.grid(axis='y', alpha=0.4)
+    
+    # remove legend, add colorbar instead
+    sm = cm.ScalarMappable(cmap='plasma', norm=plt.Normalize(vmin=0, vmax=n_snrbins))
+    sm.set_array([])
+    cbar = plt.colorbar(sm, ax=ax, pad=0.02)
+    cbar.set_label(r'SNR$_{\rm ' + net_name + r'}$', fontsize=20)
 
+    # tick at centre of each bin, label every other one
+    cbar.set_ticks(np.arange(0.5, n_snrbins, 1))
+    cbar.set_ticklabels(
+        [snr_labels[i] if i % 2 == 0 else '' for i in range(n_snrbins)],
+        fontsize=14
+    )
     # legend with every other bin labeled to avoid crowding
-    handles, labels = ax.get_legend_handles_labels()
-    ax.legend(handles[::1], labels[::1],
-              fontsize=13, loc='upper right',
-              framealpha=0.8)
+    #handles, labels = ax.get_legend_handles_labels()
+    #ax.legend(handles[::1], labels[::1],
+    #          fontsize=13, loc='upper right',
+    #          framealpha=0.8)
 
     plt.tight_layout()
     out = plot_path + f"chi_eff_stacked_snr_{net_name}.pdf"
