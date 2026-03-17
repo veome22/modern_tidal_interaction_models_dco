@@ -309,7 +309,7 @@ for net_name, snr in snr_results.items():
     cmap   = cm.get_cmap('plasma', n_snrbins)
     colors = [cmap(i) for i in range(n_snrbins)]
 
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(6, 3))
 
     bottoms = np.zeros(len(chi_edges) - 1)
     for i in range(n_snrbins):
@@ -318,20 +318,18 @@ for net_name, snr in snr_results.items():
                label=snr_labels[i], edgecolor='none', linewidth=0)
         bottoms += probs[i]
 
-    ax.set_xlabel(r'$\chi_{\rm eff}$', fontsize=22)
-    ax.set_ylabel(r'P$(\chi_{\rm eff})$', fontsize=22)
+    ax.set_xlabel(r'$\chi_{\rm eff}$', fontsize=20)
+    ax.set_ylabel(r'P$(\chi_{\rm eff})$', fontsize=20)
     ax.set_xlim(-0.05, 1.05)
     ax.set_ylim(bottom=0)
-    ax.tick_params(labelsize=14)
+    ax.tick_params(labelsize=20)
     ax.grid(axis='y', alpha=0.4)
 
     # legend with every other bin labeled to avoid crowding
     handles, labels = ax.get_legend_handles_labels()
     ax.legend(handles[::1], labels[::1],
-              fontsize=12, loc='upper right',
-              framealpha=0.8,
-              title=rf'SNR$_{{\rm {net_name}}}$',
-              title_fontsize=16)
+              fontsize=13, loc='upper right',
+              framealpha=0.8)
 
     plt.tight_layout()
     out = plot_path + f"chi_eff_stacked_snr_{net_name}.pdf"
