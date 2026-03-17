@@ -270,13 +270,13 @@ for net_name, psd_spec in network_psd_specs.items():
 
 snr_edges  = [8, 25, 50, 100, 250, 500, 1000, np.inf]
 snr_labels = [
-    r'$8 \leq \rho < 25$',
-    r'$25 \leq \rho < 50$',
-    r'$50 \leq \rho < 100$',
-    r'$100 \leq \rho < 250$',
-    r'$250 \leq \rho < 500$',
-    r'$500 \leq \rho < 1000$',
-    r'$\rho \geq 1000$',
+    r'$8 \leq $SNR$ < 25$',
+    r'$25 \leq $SNR$ < 50$',
+    r'$50 \leq $SNR$ < 100$',
+    r'$100 \leq $SNR$ < 250$',
+    r'$250 \leq $SNR$ < 500$',
+    r'$500 \leq $SNR$ < 1000$',
+    r'SNR$ \geq 1000$',
 ]
 n_snrbins = len(snr_edges) - 1
 
@@ -319,7 +319,7 @@ for net_name, snr in snr_results.items():
         bottoms += probs[i]
 
     ax.set_xlabel(r'$\chi_{\rm eff}$', fontsize=22)
-    ax.set_ylabel(r'$p(\chi_{\rm eff})$', fontsize=22)
+    ax.set_ylabel(r'P$(\chi_{\rm eff})$', fontsize=22)
     ax.set_xlim(-0.05, 1.05)
     ax.set_ylim(bottom=0)
     ax.tick_params(labelsize=14)
@@ -327,11 +327,11 @@ for net_name, snr in snr_results.items():
 
     # legend with every other bin labeled to avoid crowding
     handles, labels = ax.get_legend_handles_labels()
-    ax.legend(handles[::2], labels[::2],
-              fontsize=12, loc='upper left',
+    ax.legend(handles[::1], labels[::1],
+              fontsize=12, loc='upper right',
               framealpha=0.8,
-              title=rf'$\rho_{{\rm {net_name}}}$',
-              title_fontsize=13)
+              title=rf'SNR$_{{\rm {net_name}}}$',
+              title_fontsize=16)
 
     plt.tight_layout()
     out = plot_path + f"chi_eff_stacked_snr_{net_name}.pdf"
