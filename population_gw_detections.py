@@ -120,20 +120,20 @@ for pop_name in pop_names:
 
 network_psd_specs = {
 
-    # ── O4a: H1 + L1 + Virgo ─────────────────────────────────────────────
-    'O4a': {
-        'H1':    os.path.join(glob.detPath, 'observing_scenarios_paper', 'aligo_O4high.txt'),
-        'L1':    os.path.join(glob.detPath, 'observing_scenarios_paper', 'aligo_O4high.txt'),
-        'Virgo': os.path.join(glob.detPath, 'observing_scenarios_paper', 'avirgo_O4high_NEW.txt'),
-    },
-
-    # # ── 3G: ET (triangular, 15 km) + CE1 + A+ ────────────────────────────
-    # '3G': {
-    #     'ETSL':    os.path.join(glob.detPath, 'ET_designs_comparison_paper/HFLF_cryo', 'ETLength15km.txt'),
-    #     'ETMRL45d':os.path.join(glob.detPath, 'ET_designs_comparison_paper/HFLF_cryo', 'ETLength15km.txt'),
-    #     'CE1Id':   os.path.join(glob.detPath, 'ce_strain', 'cosmic_explorer.txt'),
-    #     'LIGOI':   os.path.join(glob.detPath, 'observing_scenarios_paper', 'AplusDesign.txt'),
+    # # ── O4a: H1 + L1 + Virgo ─────────────────────────────────────────────
+    # 'O4a': {
+    #     'H1':    os.path.join(glob.detPath, 'observing_scenarios_paper', 'aligo_O4high.txt'),
+    #     'L1':    os.path.join(glob.detPath, 'observing_scenarios_paper', 'aligo_O4high.txt'),
+    #     'Virgo': os.path.join(glob.detPath, 'observing_scenarios_paper', 'avirgo_O4high_NEW.txt'),
     # },
+
+    # ── 3G: ET (triangular, 15 km) + CE1 + A+ ────────────────────────────
+    '3G': {
+        'ETSL':    os.path.join(glob.detPath, 'ET_designs_comparison_paper/HFLF_cryo', 'ETLength15km.txt'),
+        'ETMRL45d':os.path.join(glob.detPath, 'ET_designs_comparison_paper/HFLF_cryo', 'ETLength15km.txt'),
+        'CE1Id':   os.path.join(glob.detPath, 'ce_strain', 'cosmic_explorer.txt'),
+        'LIGOI':   os.path.join(glob.detPath, 'observing_scenarios_paper', 'AplusDesign.txt'),
+    },
 
     # ── Add more networks here ────────────────────────────────────────────
     # 'MyNet': {
@@ -421,8 +421,8 @@ for net_name, snr in snr_results.items():
     M   = m1 + m2
     q   = np.minimum(m1, m2) / np.maximum(m1, m2)
 
-    ALPHA_HI  = 0.3
-    ALPHA_LO  = 0.3
+    ALPHA_HI  = 0.1
+    ALPHA_LO  = 0.1
     s         = 10
 
     # panel definitions: (ax, x_data, y_data, xlabel, ylabel, xlim, ylim)

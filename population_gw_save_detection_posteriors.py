@@ -133,7 +133,7 @@ network_psd_specs = {
         'ETSL':    os.path.join(glob.detPath, 'ET_designs_comparison_paper/HFLF_cryo', 'ETLength15km.txt'),
         'ETMRL45d':os.path.join(glob.detPath, 'ET_designs_comparison_paper/HFLF_cryo', 'ETLength15km.txt'),
         'CE1Id':   os.path.join(glob.detPath, 'ce_strain', 'cosmic_explorer.txt'),
-        'LIGOI':   os.path.join(glob.detPath, 'observing_scenarios_paper', 'AplusDesign.txt'),
+        #'LIGOI':   os.path.join(glob.detPath, 'observing_scenarios_paper', 'AplusDesign.txt'),
     },
 
     # ── Add more networks here ────────────────────────────────────────────
@@ -345,7 +345,7 @@ for net_name, psd_spec in network_psd_specs.items():
     # ── Batched Fisher + covariance ─────────────────────────────────────
     FIM = compute_fim_in_batches(
         net, det_events,
-        batch_size=100,   # ← lower if still OOM (try 20 or 10)
+        batch_size=50,   # ← lower if still OOM (try 20 or 10)
         res=500,         # ← lower than 1000 saves memory; 500 is usually fine
     )
     print("Computed Fisher Matrix")
