@@ -9,6 +9,10 @@
 # if a log file is not specified in this file, the default specification is used
 
 
+BSE_SNE_Rec += {
+    SUPERNOVA_PROPERTY::ANGULAR_MOMENTUM,
+    COMPANION_PROPERTY::ANGULAR_MOMENTUM
+}
 
 # BSE System Parameters
 
