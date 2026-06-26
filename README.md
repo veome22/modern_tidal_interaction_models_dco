@@ -1,6 +1,6 @@
 This is the companion repository to [Modern tidal interaction models for rapid binary population synthesis: II. Binary black hole formation, mergers, and spins]([https://arxiv.org/abs/0707.2982](https://arxiv.org/abs/2606.23773)).
 
-The code to reproduce all the plots depends on having access to a set of COMPAS simulations, which are too large to host on GitHub. The data files can be found on [Zenodo](https://zenodo.org/records/20941457?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImJkMTdhMzc1LTc5ZGYtNDM5Ni04M2Q1LTg2NjhkMjVkYjBlNiIsImRhdGEiOnt9LCJyYW5kb20iOiJiMjVmNzQ5MGYxYzk5NmM2ODkyODAzN2Q3ZTFhODlmOSJ9.Y4YdblFR0RSDAEwbiC6FuzfTOLMhy6rDcwVTot_zfdShCeJaYnmXB2Ybbs6uQm31xWVV4iZYIpCSR8yYg2VnHQ).
+The code to reproduce all the plots depends on having access to a set of COMPAS simulations, which are too large to host on GitHub. The data files can be found on [Zenodo](https://zenodo.org/records/20942662?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImI1NzM1MWQ0LTljNmYtNGVhNy1hZjAwLTg2YzY0OTFlYjc5ZSIsImRhdGEiOnt9LCJyYW5kb20iOiIzMzI1NWExODhhNjZjYzAwNGI2ZThiMzc2OTAwNWZlYiJ9.qgkVuqUZZvC6JPnq-5qd9dO-xnkJyAo4qgzq5S9Gn3LODiuKwOivcJ2PZBaFVWiXgrL9Yik8hLd4sIVHQqJ2Dg).
 
 ## Producing COMPAS Simulations (skip if downloading processed files from Zenodo)
 We ran COMPAS in parallel on an HPC cluster with sbatch to produce the 3.8 M simulations per tidal prescription used in this work. Examples of the sbatch scripts are shown in [sbatch_scripts](../main/sbatch_scripts/). The COMPAS workflow is best set up by each user to best suit their system, but the general parameters of the simulations may look something like this for the `KAPIL2026` tidal prescription (with COMPAS v3.29.00):
@@ -17,7 +17,7 @@ The following workflow outlines the steps after having produced and combined the
 1. The first step is to pre-process the raw COMPAS output files, which is done in [1_process_compas_sims.ipynb](../main/1_process_compas_sims.ipynb). This step only needs to be performed once, after which more convenient data files should be written.
 
 ## Paper Plots
-This section can be followed as long as the user has processed the COMPAS output already, or downloaded the outputs from [Zenodo](https://zenodo.org/records/20941457?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImJkMTdhMzc1LTc5ZGYtNDM5Ni04M2Q1LTg2NjhkMjVkYjBlNiIsImRhdGEiOnt9LCJyYW5kb20iOiJiMjVmNzQ5MGYxYzk5NmM2ODkyODAzN2Q3ZTFhODlmOSJ9.Y4YdblFR0RSDAEwbiC6FuzfTOLMhy6rDcwVTot_zfdShCeJaYnmXB2Ybbs6uQm31xWVV4iZYIpCSR8yYg2VnHQ). Note that Figure 13 requires the data files hosted on Zenodo.
+This section can be followed as long as the user has processed the COMPAS output already, or downloaded the outputs from Zenodo. Note that Figure 13 requires two data files hosted on Zenodo, and cannot be reproduced otherwise.
 
 2. The plots involving formation and merger yields from the complete simulations can be found in [2_merger_rates.ipynb](../main/2_merger_rates.ipynb). This notebook produces Figures 1 and 2.
 3. Spins are plotted for the entire simulation in [3_spin_plots_full_simulations.ipynb](../main/3_spin_plots_full_simulations.ipynb), including Figures 5, 6, and 7.
