@@ -3,11 +3,10 @@ This is the companion repository to [Modern tidal interaction models for rapid b
 The code to reproduce all the plots depends on having access to a set of COMPAS simulations, which are too large to host on GitHub. The data files can be found on [Zenodo](https://zenodo.org/records/20941457?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImJkMTdhMzc1LTc5ZGYtNDM5Ni04M2Q1LTg2NjhkMjVkYjBlNiIsImRhdGEiOnt9LCJyYW5kb20iOiJiMjVmNzQ5MGYxYzk5NmM2ODkyODAzN2Q3ZTFhODlmOSJ9.Y4YdblFR0RSDAEwbiC6FuzfTOLMhy6rDcwVTot_zfdShCeJaYnmXB2Ybbs6uQm31xWVV4iZYIpCSR8yYg2VnHQ).
 
 # Producing COMPAS Simulations
-We ran COMPAS in parallel on an HPC cluster with sbatch to produce the 3.8M simulations per tidal prescription used in this work. This is best set up by each user to best suit their workflow. However, the general parameters of the simulations should look something like this for the `KAPIL2026` tidal prescription (with COMPAS v3.29.00):
+We ran COMPAS in parallel on an HPC cluster with sbatch to produce the 3.8 M simulations per tidal prescription used in this work. Examples of the sbatch scripts are shown in [sbatch_scripts](../main/sbatch_scripts/). The COMPAS workflow is best set up by each user to best suit their system, but the general parameters of the simulations may look something like this for the `KAPIL2026` tidal prescription (with COMPAS v3.29.00):
 
 ```
 COMPAS -n 1000 --output-path pop_sims --initial-mass-function-min 5.0 --initial-mass-function-max 150.0 --orbital-period-min 1.0 --orbital-period-max 1000.0 --orbital-period-distribution FLATINLOG --eccentricity-distribution SANA2012 --metallicity-distribution LOGUNIFORM --detailed-output FALSE --logfile-definitions 'detailed_output_pop_definitions_min.txt' --maximum-number-timestep-iterations 1999999 --mass-change-fraction 0.001 --radial-change-fraction 0.001 --tides-prescription KAPIL2026
-done
 ```
 For the other simulations shown in this work, the `--tides-prescription` option may be set to `NONE`or `PERFECT` for the main paper, and `ZAHN1977` for the comparison in Appendix B.
 

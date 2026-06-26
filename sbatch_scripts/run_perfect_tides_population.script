@@ -1,0 +1,27 @@
+#!/bin/bash
+#SBATCH --job-name=perfect_tides_1440k_1920k
+#SBATCH --time=10:00:00
+#SBATCH --nodes=5
+#SBATCH --ntasks=240
+#SBATCH --cpus-per-task=1        # Number of CPU cores per task
+#SBATCH --partition=parallel
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=user@email.com
+
+source /data/apps/linux-centos8-cascadelake/gcc-9.3.0/anaconda3-2020.07-i7qavhiohb2uwqs4eqjeefzx3kp5jqdu/etc/profile.d/conda.sh 
+
+conda activate tides
+
+ml gsl/2.7
+ml gcc/9.3.0
+ml openmpi/3.1.6
+ml boost/1.74.0
+ml hdf5/1.10.7
+
+for i in {0..239}
+do
+    seed=$((1440000+(i * 2000)))
+    output_container="perfect_pop_${seed}_$((seed + 2000))"
+    srun --exclusive -n 1 ~/COMPAS/src/COMPAS --random-seed $seed -n 2000 --output-path ~/pop_sims/perfect_pop_v329_1440_1920 --output-container $output_container --initial-mass-function-min 5.0 --initial-mass-function-max 150.0 --orbital-period-min 1.0 --orbital-period-max 1000.0 --orbital-period-distribution FLATINLOG --eccentricity-distribution SANA2012 --metallicity-distribution LOGUNIFORM --tides-prescription PERFECT --detailed-output FALSE --logfile-definitions 'detailed_output_pop_definitions_min.txt' --maximum-number-timestep-iterations 1999999 --mass-change-fraction 0.001 --radial-change-fraction 0.001 --timestep-multiplier 1.0 &
+done
+wait
